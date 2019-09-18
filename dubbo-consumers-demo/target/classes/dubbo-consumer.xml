@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+			xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://code.alibabatech.com/schema/dubbo
+			http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+    <!-- 消费方应用信息，用于dubbo计算依赖关系 -->    
+    <dubbo:application name="dubbo_consumer" />       
+    
+    <!-- 使用multicast广播向注册中心暴露，这是个消费者的地址 -->    
+    <dubbo:registry  protocol="zookeeper"  address="zookeeper://172.27.35.3:2181" />         
+    
+    <!-- 调用远程服务，使用提供方的userService -->    
+    <dubbo:reference id="userService"  interface="com.zhoubc.service.IUserService" />
+
+</beans>
